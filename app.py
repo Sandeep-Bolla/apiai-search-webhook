@@ -48,16 +48,15 @@ def web():
 
 
 def processRequest(req):
-    if req.get("result").get("action") != "weather":
+    if req.get("result").get("action") != "input.welcome":
         return {}
     result = req.get("result")
-    parameters = result.get("parameters")
-    address = parameters.get("address")
-    city =address.get("city")
-    print(city)
-    if city is None:
+    
+    query =result.get("resolvedQuery")
+    
+    if query is None:
         return None
-    result=search(city)
+    result=search(query)
     
     #data = json.loads(req)
     res = makeWebhookResult(result)
