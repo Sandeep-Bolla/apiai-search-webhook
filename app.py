@@ -48,11 +48,12 @@ def web():
 
 
 def processRequest(req):
-    if req.get("result").get("action") != "search":
+    if req.get("result").get("action") != "weather":
         return {}
     result = req.get("result")
     parameters = result.get("parameters")
-    city = parameters.get("city")
+    address = parameters.get("address")
+    city =address.get("city")
     print(city)
     if city is None:
         return None
