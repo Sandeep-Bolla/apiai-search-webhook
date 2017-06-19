@@ -41,6 +41,11 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
+@app.route('/', methods=['GET'])
+def web():
+    
+    return "WELCOME :)"
+
 
 def processRequest(req):
     if req.get("result").get("action") != "search":
