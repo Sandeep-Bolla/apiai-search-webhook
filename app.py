@@ -48,14 +48,14 @@ def web():
 
 
 def processRequest(req):
-    if req.get("result").get("action") != "input.welcome":
-        return {}
+    #if req.get("result").get("action") != "input.welcome":
+        return {"action is empty"}
     result = req.get("result")
     
     query =result.get("resolvedQuery")
     
-    if query is None:
-        return None
+    #if query is None:
+     #   return None
     result=search(query)
     
     #data = json.loads(req)
