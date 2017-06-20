@@ -91,10 +91,10 @@ def makeWebhookResult(data):
     }
   ],
 
-        #"speech": str(data),
+        "speech": "str(data)",
         "displayText": "",
-        # "data": data,
-        # "contextOut": [],
+        "data": "data",
+         "contextOut": [],
         "source": "apiai-search-webhook"
     }
 
