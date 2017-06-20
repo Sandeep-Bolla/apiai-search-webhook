@@ -91,7 +91,7 @@ def makeWebhookResult(data):
     }
   ],
 
-        "speech": "str(data)",
+        "speech": str(data),
         "displayText": "",
         "data": "data",
          "contextOut": [],
