@@ -49,7 +49,7 @@ def web():
 
 def processRequest(req):
     #if req.get("result").get("action") != "input.welcome":
-        return {"action is empty"}
+    #    return {"action is empty"}
     result = req.get("result")
     
     query =result.get("resolvedQuery")
