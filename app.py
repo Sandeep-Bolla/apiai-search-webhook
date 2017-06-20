@@ -73,25 +73,29 @@ def makeWebhookResult(data):
 
     return {
     
-  "type": 1,
-  "title": "title",
-  "subtitle": "subtitle",
-  "buttons": [
+ "messages": [
     {
-      "text": "button1",
-      "postback": "www.google.com"
-    },
-    {
-      "text": "button2",
-      "postback": "www.google.com"
-    },
-    {
-      "text": "button3",
-      "postback": "www.google.com"
+      "type": 1,
+      "title": "title",
+      "subtitle": "subtitle",
+      "buttons": [
+        {
+          "text": "button1",
+          "postback": "www.google.com"
+        },
+        {
+          "text": "button2",
+          "postback": "www.google.com"
+        },
+        {
+          "text": "button3",
+          "postback": "www.google.com"
+        }
+      ]
     }
   ],
 
-        "speech": str(data),
+        "speech": "str(data)",
         "displayText": "",
         "data": "data",
          "contextOut": [],
