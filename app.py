@@ -71,6 +71,7 @@ def makeWebhookResult(data):
     #print("Response:")
     #print(speech)
 
+    	search
     return {
     
  "messages": [
@@ -104,35 +105,37 @@ def makeWebhookResult(data):
 
 def search(query):
     query=query.strip().split()
-    query="+".join(query)
+	query="+".join(query)
 
-    html = "https://www.google.co.in/search?site=&source=hp&q="+query+"&gws_rd=ssl"
-    req = urllib.request.Request(html, headers={'User-Agent': 'Mozilla/5.0'})
+	html = "https://www.google.co.in/search?site=&source=hp&q="+query+"&gws_rd=ssl"
+	req = urllib.request.Request(html, headers={'User-Agent': 'Mozilla/5.0'})
 
-    soup = BeautifulSoup(urlopen(req).read(),"html.parser")
+	soup = BeautifulSoup(urlopen(req).read(),"html.parser")
 
-    #Regex
-    reg=re.compile(".*&sa=")
-    search =[]
-    links = []
-    title = []
-    body  = []
-    #parsing title
-    for item in soup.find_all(attrs={'class' : 'r'}):
-            title.append(item.a.contents)
-    
-    #parsing body
-    for item in soup.find_all(attrs={'class' : 'st'}):
-            body.append(item.contents)
+	#Regex
+	reg=re.compile(".*&sa=")
+	search =[]
+	links = []
+	titles = []
+	imgs  = []
 
-    #Parsing web urls
-    for item in soup.find_all('h3', attrs={'class' : 'r'}):
-            line = (reg.match(item.a['href'][7:]).group())
-            links.append(line[:-4])
-    print(title)
-    search.append(title)
-    search.append(body)
-    search.append(links)
+
+
+
+	for item in soup.find_all(attrs={'class' : 'th'}):
+	    imgs.append(item.img['src'])
+
+	#Parsing web urls
+	for item in soup.find_all('h3', attrs={'class' : 'r'}):
+	    link = (reg.match(item.a['href'][7:]).group())[:-4]
+	    title=re.sub('<[^>]*>', '', str(item.a.contents)).replace("'"," ")
+	    titles.append(str(title))
+	    links.append(line)
+	#print(title)
+	search.append(titles)
+	search.append(imgs)
+	search.append(links)
+	
 
     return search
 
