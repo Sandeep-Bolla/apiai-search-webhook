@@ -72,8 +72,8 @@ def makeWebhookResult(data):
     #print(speech)
 
     return {
-        #"speech": str(data),
-        #"displayText": "",
+        "speech": str(data),
+        "displayText": "",
         "type":3,
         "imageUrl":"https://www.google.co.in/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
         # "data": data,
