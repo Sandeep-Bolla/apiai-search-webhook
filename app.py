@@ -74,9 +74,10 @@ def makeWebhookResult(data):
     return {
         "speech": str(data),
         "displayText": "",
+        "imageUrl":"https://www.google.co.in/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
         # "data": data,
         # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
+        "source": "apiai-search-webhook"
     }
 
 def search(query):
