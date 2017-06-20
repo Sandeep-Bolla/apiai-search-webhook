@@ -72,10 +72,27 @@ def makeWebhookResult(data):
     #print(speech)
 
     return {
-        "speech": str(data),
-        "displayText": "",
-        "type":3,
-        "imageUrl":"https://www.google.co.in/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+    
+  "type": 1,
+  "title": "title",
+  "subtitle": "subtitle",
+  "buttons": [
+    {
+      "text": "button1",
+      "postback": "www.google.com"
+    },
+    {
+      "text": "button2",
+      "postback": "www.google.com"
+    },
+    {
+      "text": "button3",
+      "postback": "www.google.com"
+    }
+  ],
+
+        #"speech": str(data),
+        #"displayText": "",
         # "data": data,
         # "contextOut": [],
         "source": "apiai-search-webhook"
