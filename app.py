@@ -34,8 +34,9 @@ def webhook():
     #print(json.dumps(req, indent=4))
 
     res = processRequest(req)
-
-    res = json.dumps(res, indent=4)
+    print(res)
+    print("*********************")
+    #res = json.dumps(res, indent=4)
     print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
@@ -70,32 +71,10 @@ def makeWebhookResult(data):
     
     #print("Response:")
     #print(speech)
+	  return "{"+buildJson(data[0],data[1],data[2])+"}"
+	  
 
-   
-	    return {
-	    
-	 "messages": [
-	    {
-	      "type": 1,
-	      "title": "title",
-	      "subtitle": "subtitle",
-	      "imageUrl":"https://www.google.co.in/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
-	      "buttons": [
-	        {
-	          "text": "button1",
-	          "postback": "www.google.com"
-	        }
 	        
-	      ]
-	    }
-	  ],
-
-	        "speech": "str(data)",
-	        "displayText": "",
-	        "data": "data",
-	         "contextOut": [],
-	        "source": "apiai-search-webhook"
-	    }
 
 def search(query):
 	query=query.strip().split()
@@ -128,6 +107,28 @@ def search(query):
 		
 
 	return search
+
+def buildJson(x,y,z):
+    str=""
+    str +="\"messages\": ["
+    for i in range(len(x)):
+            str +="{ \
+  \"type\": 1, \
+  \"title\": \""+x[i]+"\", \
+  \"subtitle\": \""+x[i]+"\",\
+  \"imageUrl\": \""+y[i]+"\",\
+  \"buttons\": [\
+    {\
+      \"text\": \"\",\
+      \"postback\": \""+z[i]+"\"\
+    }\
+  ]\
+},"
+    str =str[:-1]+"],\"speech\":\"str(data)\", \"displayText\": \"\",\"data\": \"data\",\"contextOut\": [],\
+    \"source\": \"apiai-search-webhook\" "
+    return str         
+       
+
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5004))
