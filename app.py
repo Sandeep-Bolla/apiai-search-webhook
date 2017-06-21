@@ -71,73 +71,63 @@ def makeWebhookResult(data):
     #print("Response:")
     #print(speech)
 
-    	search
-    return {
-    
- "messages": [
-    {
-      "type": 1,
-      "title": "title",
-      "subtitle": "subtitle",
-      "buttons": [
-        {
-          "text": "button1",
-          "postback": "www.google.com"
-        },
-        {
-          "text": "button2",
-          "postback": "www.google.com"
-        },
-        {
-          "text": "button3",
-          "postback": "www.google.com"
-        }
-      ]
-    }
-  ],
+   
+	    return {
+	    
+	 "messages": [
+	    {
+	      "type": 1,
+	      "title": "title",
+	      "subtitle": "subtitle",
+	      "imageUrl":"https://www.google.co.in/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+	      "buttons": [
+	        {
+	          "text": "button1",
+	          "postback": "www.google.com"
+	        }
+	        
+	      ]
+	    }
+	  ],
 
-        "speech": "str(data)",
-        "displayText": "",
-        "data": "data",
-         "contextOut": [],
-        "source": "apiai-search-webhook"
-    }
+	        "speech": "str(data)",
+	        "displayText": "",
+	        "data": "data",
+	         "contextOut": [],
+	        "source": "apiai-search-webhook"
+	    }
 
 def search(query):
-    query=query.strip().split()
+	query=query.strip().split()
 	query="+".join(query)
-
-	html = "https://www.google.co.in/search?site=&source=hp&q="+query+"&gws_rd=ssl"
-	req = urllib.request.Request(html, headers={'User-Agent': 'Mozilla/5.0'})
+	html="https://www.google.co.in/search?q="+query
+	req = urllib.request.Request(html, headers={'User-Agent': 'Mozilla/5.0 (Linux; <Android Version>; <Build Tag etc.>) AppleWebKit/<WebKit Rev> (KHTML, like Gecko) Chrome/<Chrome Rev> Mobile Safari/<WebKit Rev>'})
 
 	soup = BeautifulSoup(urlopen(req).read(),"html.parser")
 
-	#Regex
-	reg=re.compile(".*&sa=")
 	search =[]
 	links = []
 	titles = []
 	imgs  = []
 
 
+	for item in soup.find_all(attrs={'class' : '_IRj _dTj _l7n'}):
+	        titles.append("".join(item.contents))
+
+	for item in soup.find_all(attrs={'class' : '_uSj _owm _KBh'}):
+	        links.append(item.a['href'])
+	        try:
+	            imgs.append(item.img['data-src'])
+	        except:
+	            imgs.append(item.img['src'])
 
 
-	for item in soup.find_all(attrs={'class' : 'th'}):
-	    imgs.append(item.img['src'])
+	search.append(imgs[2:10])
+	search.append(titles[2:10])
+	search.append(links[2:10])
+		
 
-	#Parsing web urls
-	for item in soup.find_all('h3', attrs={'class' : 'r'}):
-	    link = (reg.match(item.a['href'][7:]).group())[:-4]
-	    title=re.sub('<[^>]*>', '', str(item.a.contents)).replace("'"," ")
-	    titles.append(str(title))
-	    links.append(line)
-	#print(title)
-	search.append(titles)
-	search.append(imgs)
-	search.append(links)
-	
-
-    return search
+	return search
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5004))
