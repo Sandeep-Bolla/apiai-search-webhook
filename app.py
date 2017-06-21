@@ -114,9 +114,9 @@ def buildJson(x,y,z):
     for i in range(len(x)):
             str +="{ \
   \"type\": 1, \
-  \"title\": \""+x[i]+"\", \
-  \"subtitle\": \""+x[i]+"\",\
-  \"imageUrl\": \""+y[i]+"\",\
+  \"title\": \""+y[i]+"\", \
+  \"subtitle\": \""+y[i]+"\",\
+  \"imageUrl\": \""+x[i]+"\",\
   \"buttons\": [\
     {\
       \"text\": \"\",\
