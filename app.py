@@ -124,7 +124,7 @@ def buildJson(x,y,z):
     }\
   ]\
 },"
-    str =str[:-1]+"],\"speech\":\"str(data)\", \"displayText\": \"\",\"data\": \"data\",\"contextOut\": [],\
+    str =str[:-1]+"],\"displayText\": \"\",\"data\": \"data\",\"contextOut\": [],\
     \"source\": \"apiai-search-webhook\" "
     return str         
        
