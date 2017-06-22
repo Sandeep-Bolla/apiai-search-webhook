@@ -119,7 +119,7 @@ def buildJson(x,y,z):
   \"imageUrl\": \""+x[i]+"\",\
   \"buttons\": [\
     {\
-      \"text\": \"\",\
+      \"text\": \"link\",\
       \"postback\": \""+z[i]+"\"\
     }\
   ]\
