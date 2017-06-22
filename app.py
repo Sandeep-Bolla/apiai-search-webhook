@@ -26,7 +26,7 @@ import re
 app = Flask(__name__)
 
 
-@app.route('/webhook', methods=['POST'])
+@app.route('/chatbot', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
 
@@ -42,7 +42,7 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
-@app.route('/', methods=['GET'])
+@app.route('/chat', methods=['GET'])
 def web():
     
     return "WELCOME :)"
@@ -124,14 +124,14 @@ def buildJson(x,y,z):
     }\
   ]\
 },"
-    str =str[:-1]+"],\"displayText\": \"\",\"data\": \"data\",\"contextOut\": [],\
+    str =str[:-1]+"],\"speech\": \"Here you go\",\"displayText\": \"\",\"data\": \"data\",\"contextOut\": [],\
     \"source\": \"apiai-search-webhook\" "
     return str         
        
 
 
 if __name__ == '__main__':
-    port = int(os.getenv('PORT', 5004))
+    port = int(os.getenv('PORT', 8000))
 
     print("Starting app on port %d" % port)
 
